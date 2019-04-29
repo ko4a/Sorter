@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace Sorter
+namespace Sorter.Sort
 {
    public class AlgorithmBase<T> where T:IComparable
     {

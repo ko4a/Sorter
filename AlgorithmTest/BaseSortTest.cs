@@ -1,5 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Sorter;
+using Sorter.Sort;
 using System;
 using System.Collections.Generic;
 using System.Linq;
