@@ -5,7 +5,9 @@ VisualStudioVersion = 15.0.28010.2041
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorter", "Sorter\Sorter.csproj", "{87E831BF-5F95-45C0-8EA3-B69E054332C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlgorithmTest", "AlgorithmTest\AlgorithmTest.csproj", "{A442149B-7123-4CB2-A66B-5D9816BFD4B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AlgorithmTest", "AlgorithmTest\AlgorithmTest.csproj", "{A442149B-7123-4CB2-A66B-5D9816BFD4B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UIWinForms", "UIWinForms\UIWinForms.csproj", "{AF4E3C44-BD2A-4662-AD3F-3364E076852B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{A442149B-7123-4CB2-A66B-5D9816BFD4B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A442149B-7123-4CB2-A66B-5D9816BFD4B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A442149B-7123-4CB2-A66B-5D9816BFD4B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF4E3C44-BD2A-4662-AD3F-3364E076852B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF4E3C44-BD2A-4662-AD3F-3364E076852B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF4E3C44-BD2A-4662-AD3F-3364E076852B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF4E3C44-BD2A-4662-AD3F-3364E076852B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
