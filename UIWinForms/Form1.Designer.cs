@@ -1,4 +1,4 @@
-﻿namespace Sorter
+﻿namespace UIWinForms
 {
     partial class Form1
     {
