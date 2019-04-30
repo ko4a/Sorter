@@ -2,7 +2,7 @@
 
 namespace Sorter.Sort
 {
-   public class BubbleSort<T>:AlgorithmBase<T> where T:IComparable
+    public class BubbleSort<T> : AlgorithmBase<T> where T : IComparable
     {
         public override void Makesort()
         {
@@ -11,7 +11,7 @@ namespace Sorter.Sort
 
             bool SwapIteration = false;
 
-            for (int i=1;i<Items.Count;i++)
+            for (int i = 1; i < Items.Count; i++)
             {
                 var a = Items[i - 1];
                 var b = Items[i];
@@ -22,7 +22,7 @@ namespace Sorter.Sort
                     Swap(i, i - 1);
                     SwapIteration = true;
                 }
-                if (i == Items.Count - 1&& SwapIteration )
+                if (i == Items.Count - 1 && SwapIteration)
                 {
                     SwapIteration = false;
                     i = 0;
