@@ -69,5 +69,18 @@ namespace AlgorithmTest
 
         }
 
+        [TestMethod]
+        public void InsertSortTest()
+        {
+            var insert = new InsertSort<int>();
+            insert.Items.AddRange(items);
+
+            insert.Sort();
+
+            for (int i = 0; i < 10_000; i++)
+                Assert.AreEqual(sorted[i], insert.Items[i]);
+
+        }
+
     }
 }

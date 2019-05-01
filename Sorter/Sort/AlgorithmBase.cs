@@ -7,7 +7,7 @@ namespace Sorter.Sort
    public class AlgorithmBase<T> where T:IComparable
     {
         public int SwapCount { get; set; } = default;
-        public int ComparisonCount { get; set; } = default;
+       
 
         public List<T> Items { get; set; } = new List<T>();
 
