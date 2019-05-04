@@ -1,25 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace UIWinForms
 {
     public partial class Form1 : Form
     {
+        private int progressBarCount = 0;
+
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
+        private void AddValueButton_Click(object sender, EventArgs e)
         {
+            if (int.TryParse(AddValueTextBox.Text, out int addedValue))
+            {
 
+            }
+            else MessageBox.Show("Это не число.");
         }
     }
 }
