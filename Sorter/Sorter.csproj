@@ -57,6 +57,7 @@
     <Compile Include="Sort\BubbleSort.cs" />
     <Compile Include="Sort\CocktailSort.cs" />
     <Compile Include="Sort\InsertSort.cs" />
+    <Compile Include="Sort\ShellSort.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
