@@ -1,6 +1,6 @@
 ﻿namespace UIWinForms
 {
-    partial class Form1
+    partial class SorterForm
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -81,9 +81,9 @@
             // 
             this.ProgressBarPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ProgressBarPanel.Location = new System.Drawing.Point(7, 94);
+            this.ProgressBarPanel.Location = new System.Drawing.Point(6, 94);
             this.ProgressBarPanel.Name = "ProgressBarPanel";
-            this.ProgressBarPanel.Size = new System.Drawing.Size(720, 392);
+            this.ProgressBarPanel.Size = new System.Drawing.Size(715, 392);
             this.ProgressBarPanel.TabIndex = 2;
             // 
             // SortButtonPanel
@@ -97,7 +97,7 @@
             // 
             // AddRandValueTextBox
             // 
-            this.AddRandValueTextBox.Location = new System.Drawing.Point(17, 48);
+            this.AddRandValueTextBox.Location = new System.Drawing.Point(17, 47);
             this.AddRandValueTextBox.Name = "AddRandValueTextBox";
             this.AddRandValueTextBox.Size = new System.Drawing.Size(119, 20);
             this.AddRandValueTextBox.TabIndex = 4;
@@ -120,7 +120,7 @@
             this.BubbleSortButton.Text = "BubbleSort";
             this.BubbleSortButton.UseVisualStyleBackColor = true;
             // 
-            // Form1
+            // SorterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -128,8 +128,8 @@
             this.Controls.Add(this.SortButtonPanel);
             this.Controls.Add(this.ProgressBarPanel);
             this.Controls.Add(this.AddValuePanel);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "SorterForm";
+            this.Text = "Sorter";
             this.AddValuePanel.ResumeLayout(false);
             this.AddValuePanel.PerformLayout();
             this.SortButtonPanel.ResumeLayout(false);

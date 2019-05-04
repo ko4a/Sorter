@@ -26,9 +26,7 @@ namespace Sorter.Sort
         public TimeSpan Sort()
         {
             var timer = new Stopwatch();
-
             SwapCount = 0;
-
             timer.Start();
             Makesort();
             timer.Stop();
