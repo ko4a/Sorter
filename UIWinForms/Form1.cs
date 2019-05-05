@@ -78,5 +78,43 @@ namespace UIWinForms
 
             }
         }
+
+        private void AddRandValueButton_Click(object sender, EventArgs e)
+        {
+            Random randomiser = new Random();
+            if (int.TryParse(AddRandValueTextBox.Text, out int size))
+            {
+                ProgressBarPanel.Controls.Clear();
+                values.Clear();
+                progressBarCount = default;
+                previousBarLocationX = default;
+                for (int i = 0; i < size; i++)
+                {
+                    ++progressBarCount;
+                    values.Add(randomiser.Next(100));
+                    var progressBar = new VerticalProgressBar
+                    {
+                        Height = ProgressBarPanel.Height,
+                        Location = new System.Drawing.Point(previousBarLocationX, 20),
+                        Width = 20,
+                        Value = values[i]
+                    };
+
+                    var textBox = new TextBox
+                    {
+                        ReadOnly = true,
+                        Height = 15,
+                        Text = values[i].ToString(),
+                        Width = progressBar.Width,
+                        Location = new System.Drawing.Point(previousBarLocationX, 0)
+                    };
+                    previousBarLocationX += progressBar.Width;
+                    ProgressBarPanel.Controls.Add(progressBar);
+                    ProgressBarPanel.Controls.Add(textBox);
+
+                }
+            }
+            else MessageBox.Show("Это не число.");
+        }
     }
 }

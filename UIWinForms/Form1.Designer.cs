@@ -61,6 +61,7 @@
             this.AddRandValueButton.TabIndex = 5;
             this.AddRandValueButton.Text = "Заполнить случайно";
             this.AddRandValueButton.UseVisualStyleBackColor = true;
+            this.AddRandValueButton.Click += new System.EventHandler(this.AddRandValueButton_Click);
             // 
             // AddRandValueTextBox
             // 
