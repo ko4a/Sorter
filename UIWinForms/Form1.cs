@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using VerticalProgressBarSpace;
 
 namespace UIWinForms
 {
@@ -19,7 +20,7 @@ namespace UIWinForms
             if (int.TryParse(AddValueTextBox.Text, out int addedValue))
             {
                 ++progressBarCount;
-                var progressBar = new VerticalProgressBar.VerticalProgressBar
+                var progressBar = new VerticalProgressBar
                 {
                    Height = ProgressBarPanel.Height,
                    Location = new System.Drawing.Point(previousBarLocationX,20),
@@ -46,6 +47,36 @@ namespace UIWinForms
                 
             }
             else MessageBox.Show("Это не число.");
+        }
+
+        private void ProgressBarPanelSizeChanged(object sender, EventArgs e)
+        {
+            ProgressBarPanel.Controls.Clear();
+
+            previousBarLocationX = default;
+            for (int i=0;i<progressBarCount;i++)
+            {
+                var progressBar = new VerticalProgressBar
+                {
+                    Height = ProgressBarPanel.Height,
+                    Location = new System.Drawing.Point(previousBarLocationX, 20),
+                    Width = 20,
+                    Value = values[i]
+                };
+
+                var textBox = new TextBox
+                {
+                    ReadOnly = true,
+                    Height = 15,
+                    Text = values[i].ToString(),
+                    Width = progressBar.Width,
+                    Location = new System.Drawing.Point(previousBarLocationX, 0)
+                };
+                previousBarLocationX += progressBar.Width;
+                ProgressBarPanel.Controls.Add(progressBar);
+                ProgressBarPanel.Controls.Add(textBox);
+
+            }
         }
     }
 }

@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.AddValuePanel = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.AddValueTextBox = new System.Windows.Forms.TextBox();
+            this.AddRandValueButton = new System.Windows.Forms.Button();
+            this.AddRandValueTextBox = new System.Windows.Forms.TextBox();
             this.AddValueButton = new System.Windows.Forms.Button();
+            this.AddValueTextBox = new System.Windows.Forms.TextBox();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.ProgressBarPanel = new System.Windows.Forms.Panel();
             this.SortButtonPanel = new System.Windows.Forms.Panel();
-            this.AddRandValueTextBox = new System.Windows.Forms.TextBox();
-            this.AddRandValueButton = new System.Windows.Forms.Button();
             this.BubbleSortButton = new System.Windows.Forms.Button();
             this.AddValuePanel.SuspendLayout();
             this.SortButtonPanel.SuspendLayout();
@@ -53,19 +53,21 @@
             this.AddValuePanel.Size = new System.Drawing.Size(336, 86);
             this.AddValuePanel.TabIndex = 0;
             // 
-            // panel2
+            // AddRandValueButton
             // 
-            this.panel2.Location = new System.Drawing.Point(0, 86);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(241, 80);
-            this.panel2.TabIndex = 1;
+            this.AddRandValueButton.Location = new System.Drawing.Point(142, 47);
+            this.AddRandValueButton.Name = "AddRandValueButton";
+            this.AddRandValueButton.Size = new System.Drawing.Size(156, 20);
+            this.AddRandValueButton.TabIndex = 5;
+            this.AddRandValueButton.Text = "Заполнить случайно";
+            this.AddRandValueButton.UseVisualStyleBackColor = true;
             // 
-            // AddValueTextBox
+            // AddRandValueTextBox
             // 
-            this.AddValueTextBox.Location = new System.Drawing.Point(17, 10);
-            this.AddValueTextBox.Name = "AddValueTextBox";
-            this.AddValueTextBox.Size = new System.Drawing.Size(119, 20);
-            this.AddValueTextBox.TabIndex = 2;
+            this.AddRandValueTextBox.Location = new System.Drawing.Point(17, 47);
+            this.AddRandValueTextBox.Name = "AddRandValueTextBox";
+            this.AddRandValueTextBox.Size = new System.Drawing.Size(119, 20);
+            this.AddRandValueTextBox.TabIndex = 4;
             // 
             // AddValueButton
             // 
@@ -77,14 +79,30 @@
             this.AddValueButton.UseVisualStyleBackColor = true;
             this.AddValueButton.Click += new System.EventHandler(this.AddValueButton_Click);
             // 
+            // AddValueTextBox
+            // 
+            this.AddValueTextBox.Location = new System.Drawing.Point(17, 10);
+            this.AddValueTextBox.Name = "AddValueTextBox";
+            this.AddValueTextBox.Size = new System.Drawing.Size(119, 20);
+            this.AddValueTextBox.TabIndex = 2;
+            // 
+            // panel2
+            // 
+            this.panel2.Location = new System.Drawing.Point(0, 86);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(241, 80);
+            this.panel2.TabIndex = 1;
+            // 
             // ProgressBarPanel
             // 
-            this.ProgressBarPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.ProgressBarPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ProgressBarPanel.Location = new System.Drawing.Point(6, 94);
             this.ProgressBarPanel.Name = "ProgressBarPanel";
             this.ProgressBarPanel.Size = new System.Drawing.Size(715, 392);
             this.ProgressBarPanel.TabIndex = 2;
+            this.ProgressBarPanel.SizeChanged += new System.EventHandler(this.ProgressBarPanelSizeChanged);
             // 
             // SortButtonPanel
             // 
@@ -94,22 +112,6 @@
             this.SortButtonPanel.Name = "SortButtonPanel";
             this.SortButtonPanel.Size = new System.Drawing.Size(381, 86);
             this.SortButtonPanel.TabIndex = 0;
-            // 
-            // AddRandValueTextBox
-            // 
-            this.AddRandValueTextBox.Location = new System.Drawing.Point(17, 47);
-            this.AddRandValueTextBox.Name = "AddRandValueTextBox";
-            this.AddRandValueTextBox.Size = new System.Drawing.Size(119, 20);
-            this.AddRandValueTextBox.TabIndex = 4;
-            // 
-            // AddRandValueButton
-            // 
-            this.AddRandValueButton.Location = new System.Drawing.Point(142, 47);
-            this.AddRandValueButton.Name = "AddRandValueButton";
-            this.AddRandValueButton.Size = new System.Drawing.Size(156, 20);
-            this.AddRandValueButton.TabIndex = 5;
-            this.AddRandValueButton.Text = "Заполнить случайно";
-            this.AddRandValueButton.UseVisualStyleBackColor = true;
             // 
             // BubbleSortButton
             // 
