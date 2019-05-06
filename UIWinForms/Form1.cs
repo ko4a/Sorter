@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using VerticalProgressBarSpace;
+using Sorter.Sort;
 
 namespace UIWinForms
 {
@@ -122,8 +123,24 @@ namespace UIWinForms
             if (progressBarCount < 2) MessageBox.Show("нечего сортировать");
             else
             {
-
+                var bubble = new BubbleSort<int>();
+                bubble.Items.AddRange(values);
+                bubble.SwapEvent += Bubble_SwapEvent;
+                bubble.CompareEvent += Bubble_CompareEvent;
+                bubble.Sort();
             }
+        }
+
+        private void Bubble_CompareEvent(object sender, Tuple<int, int> e)
+        {
+            // подсветить сравнивыемые элементы
+            throw new NotImplementedException();
+        }
+
+        private void Bubble_SwapEvent(object sender, Tuple<int, int> e)
+        {
+            // обменять значениями прогрес бары, и лэйблы
+            throw new NotImplementedException();
         }
     }
 }
