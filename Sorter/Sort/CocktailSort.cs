@@ -20,7 +20,7 @@ namespace Sorter.Sort
                 {
                     count++;
 
-                    if (Items[i].CompareTo(Items[i + 1]) > 0)
+                     if(Compare(Items[i],Items[i+1])>0)
                         Swap(i, i + 1);
                 }
                 right--;
@@ -28,7 +28,7 @@ namespace Sorter.Sort
                 for (int i = right; i > left; i--)
                 {
                     count++;
-                    if (Items[i - 1].CompareTo(Items[i]) > 0)
+                    if(Compare(Items[i-1],Items[i])>0)
                         Swap(i - 1, i);
                 }
                 left++;

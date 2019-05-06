@@ -122,6 +122,7 @@
             this.BubbleSortButton.TabIndex = 0;
             this.BubbleSortButton.Text = "BubbleSort";
             this.BubbleSortButton.UseVisualStyleBackColor = true;
+            this.BubbleSortButton.Click += new System.EventHandler(this.BubbleSortButton_Click);
             // 
             // SorterForm
             // 

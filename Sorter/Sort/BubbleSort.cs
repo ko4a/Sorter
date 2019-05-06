@@ -17,7 +17,8 @@ namespace Sorter.Sort
                 var b = Items[i];
                 var tmpSwap = SwapCount;
 
-                if (a.CompareTo(b) > 0)
+                
+                if (Compare(a,b) > 0)
                 {
                     Swap(i, i - 1);
                     SwapIteration = true;

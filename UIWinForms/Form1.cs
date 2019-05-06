@@ -116,5 +116,14 @@ namespace UIWinForms
             }
             else MessageBox.Show("Это не число.");
         }
+
+        private void BubbleSortButton_Click(object sender, EventArgs e)
+        {
+            if (progressBarCount < 2) MessageBox.Show("нечего сортировать");
+            else
+            {
+
+            }
+        }
     }
 }

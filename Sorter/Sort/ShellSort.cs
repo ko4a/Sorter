@@ -17,7 +17,7 @@ namespace Sorter.Sort
                 for (int i = step; i < Items.Count; i++)
                 {
                     int j = i;
-                    while ((j >= step) && Items[j - step].CompareTo(Items[j])>0 )
+                    while ((j >= step) &&  Compare(Items[j-step],Items[j])>0)
                     {
                         Swap(j - step, j);
                         j -= step;
