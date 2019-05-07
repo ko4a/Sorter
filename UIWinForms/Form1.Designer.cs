@@ -37,6 +37,9 @@
             this.ProgressBarPanel = new System.Windows.Forms.Panel();
             this.SortButtonPanel = new System.Windows.Forms.Panel();
             this.BubbleSortButton = new System.Windows.Forms.Button();
+            this.InsertSortButton = new System.Windows.Forms.Button();
+            this.CocktailSortButton = new System.Windows.Forms.Button();
+            this.ShellSortButton = new System.Windows.Forms.Button();
             this.AddValuePanel.SuspendLayout();
             this.SortButtonPanel.SuspendLayout();
             this.SuspendLayout();
@@ -108,6 +111,9 @@
             // SortButtonPanel
             // 
             this.SortButtonPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.SortButtonPanel.Controls.Add(this.ShellSortButton);
+            this.SortButtonPanel.Controls.Add(this.CocktailSortButton);
+            this.SortButtonPanel.Controls.Add(this.InsertSortButton);
             this.SortButtonPanel.Controls.Add(this.BubbleSortButton);
             this.SortButtonPanel.Location = new System.Drawing.Point(346, 2);
             this.SortButtonPanel.Name = "SortButtonPanel";
@@ -122,7 +128,37 @@
             this.BubbleSortButton.TabIndex = 0;
             this.BubbleSortButton.Text = "BubbleSort";
             this.BubbleSortButton.UseVisualStyleBackColor = true;
-            this.BubbleSortButton.Click += new System.EventHandler(this.BubbleSortButton_Click);
+            this.BubbleSortButton.Click += new System.EventHandler(this.BubbleSortButtonClick);
+            // 
+            // InsertSortButton
+            // 
+            this.InsertSortButton.Location = new System.Drawing.Point(3, 43);
+            this.InsertSortButton.Name = "InsertSortButton";
+            this.InsertSortButton.Size = new System.Drawing.Size(105, 23);
+            this.InsertSortButton.TabIndex = 1;
+            this.InsertSortButton.Text = "InsertSort";
+            this.InsertSortButton.UseVisualStyleBackColor = true;
+            this.InsertSortButton.Click += new System.EventHandler(this.InsertSortButtonClick);
+            // 
+            // CocktailSortButton
+            // 
+            this.CocktailSortButton.Location = new System.Drawing.Point(131, 7);
+            this.CocktailSortButton.Name = "CocktailSortButton";
+            this.CocktailSortButton.Size = new System.Drawing.Size(106, 23);
+            this.CocktailSortButton.TabIndex = 2;
+            this.CocktailSortButton.Text = "CocktailSort";
+            this.CocktailSortButton.UseVisualStyleBackColor = true;
+            this.CocktailSortButton.Click += new System.EventHandler(this.CocktailSortButtonClick);
+            // 
+            // ShellSortButton
+            // 
+            this.ShellSortButton.Location = new System.Drawing.Point(131, 43);
+            this.ShellSortButton.Name = "ShellSortButton";
+            this.ShellSortButton.Size = new System.Drawing.Size(106, 23);
+            this.ShellSortButton.TabIndex = 3;
+            this.ShellSortButton.Text = "ShellSort";
+            this.ShellSortButton.UseVisualStyleBackColor = true;
+            this.ShellSortButton.Click += new System.EventHandler(this.ShellSortButtonClick);
             // 
             // SorterForm
             // 
@@ -152,6 +188,9 @@
         private System.Windows.Forms.Button AddRandValueButton;
         private System.Windows.Forms.TextBox AddRandValueTextBox;
         private System.Windows.Forms.Button BubbleSortButton;
+        private System.Windows.Forms.Button InsertSortButton;
+        private System.Windows.Forms.Button CocktailSortButton;
+        private System.Windows.Forms.Button ShellSortButton;
     }
 }
 

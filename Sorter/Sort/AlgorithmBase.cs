@@ -9,7 +9,7 @@ namespace Sorter.Sort
         public int SwapCount { get; set; } = default;
 
         public event EventHandler<Tuple<T,T>> CompareEvent;
-        public event EventHandler<Tuple<T, T>> SwapEvent;
+        public event EventHandler<Tuple<int, int>> SwapEvent;
 
         public List<T> Items { get; set; } = new List<T>();
 
@@ -18,7 +18,7 @@ namespace Sorter.Sort
             
             if(FirstPosition< Items.Count && SecondPosition < Items.Count)
             {
-                SwapEvent?.Invoke(this,new Tuple<T, T>(Items[FirstPosition],Items[SecondPosition]));
+                SwapEvent?.Invoke(this,new Tuple<int, int>(FirstPosition,SecondPosition));
                 var tmp = Items[FirstPosition];
                 Items[FirstPosition] = Items[SecondPosition];
                 Items[SecondPosition] = tmp;

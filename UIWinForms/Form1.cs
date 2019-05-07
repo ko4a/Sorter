@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using VerticalProgressBarSpace;
 using Sorter.Sort;
+using System.Linq;
+using System.Drawing;
 
 namespace UIWinForms
 {
@@ -10,7 +12,7 @@ namespace UIWinForms
     {
         private int progressBarCount = 0;
         private int previousBarLocationX = default;
-        private List<int> values = new List<int>(); 
+        private List<ItemSort> values = new List<ItemSort>(); 
         public SorterForm()
         {
             InitializeComponent();
@@ -24,7 +26,7 @@ namespace UIWinForms
                 var progressBar = new VerticalProgressBar
                 {
                    Height = ProgressBarPanel.Height,
-                   Location = new System.Drawing.Point(previousBarLocationX,20),
+                   Location = new Point(previousBarLocationX,20),
                    Width = 20,
                    Value = addedValue
                 };
@@ -37,10 +39,10 @@ namespace UIWinForms
                     Height = 15,
                     Text = addedValue.ToString(), 
                     Width = progressBar.Width,
-                    Location = new System.Drawing.Point(previousBarLocationX,0)
+                    Location = new Point(previousBarLocationX,0)
                 };
 
-                values.Add(addedValue);
+                values.Add(new ItemSort(progressBar,textBox));
                 previousBarLocationX += progressBar.Width;
                 ProgressBarPanel.Controls.Add(progressBar);
                
@@ -60,18 +62,18 @@ namespace UIWinForms
                 var progressBar = new VerticalProgressBar
                 {
                     Height = ProgressBarPanel.Height,
-                    Location = new System.Drawing.Point(previousBarLocationX, 20),
+                    Location = new Point(previousBarLocationX, 20),
                     Width = 20,
-                    Value = values[i]
+                    Value = values[i].Bar.Value
                 };
 
                 var textBox = new TextBox
                 {
                     ReadOnly = true,
                     Height = 15,
-                    Text = values[i].ToString(),
+                    Text = values[i].Box.Text,
                     Width = progressBar.Width,
-                    Location = new System.Drawing.Point(previousBarLocationX, 0)
+                    Location = new Point(previousBarLocationX, 0)
                 };
                 previousBarLocationX += progressBar.Width;
                 ProgressBarPanel.Controls.Add(progressBar);
@@ -82,6 +84,7 @@ namespace UIWinForms
 
         private void AddRandValueButton_Click(object sender, EventArgs e)
         {
+            //AddRandValueButton.BackColor = Color.Red;
             Random randomiser = new Random();
             if (int.TryParse(AddRandValueTextBox.Text, out int size))
             {
@@ -92,23 +95,24 @@ namespace UIWinForms
                 for (int i = 0; i < size; i++)
                 {
                     ++progressBarCount;
-                    values.Add(randomiser.Next(100));
+                    int rnd = randomiser.Next(100);
                     var progressBar = new VerticalProgressBar
                     {
                         Height = ProgressBarPanel.Height,
-                        Location = new System.Drawing.Point(previousBarLocationX, 20),
+                        Location = new Point(previousBarLocationX, 20),
                         Width = 20,
-                        Value = values[i]
+                        Value = rnd
                     };
 
                     var textBox = new TextBox
                     {
                         ReadOnly = true,
                         Height = 15,
-                        Text = values[i].ToString(),
+                        Text = rnd.ToString(),
                         Width = progressBar.Width,
-                        Location = new System.Drawing.Point(previousBarLocationX, 0)
+                        Location = new Point(previousBarLocationX, 0)
                     };
+                    values.Add(new ItemSort(progressBar, textBox));
                     previousBarLocationX += progressBar.Width;
                     ProgressBarPanel.Controls.Add(progressBar);
                     ProgressBarPanel.Controls.Add(textBox);
@@ -118,29 +122,77 @@ namespace UIWinForms
             else MessageBox.Show("Это не число.");
         }
 
-        private void BubbleSortButton_Click(object sender, EventArgs e)
+        private void BubbleSortButtonClick(object sender, EventArgs e)
         {
             if (progressBarCount < 2) MessageBox.Show("нечего сортировать");
             else
             {
                 var bubble = new BubbleSort<int>();
-                bubble.Items.AddRange(values);
-                bubble.SwapEvent += Bubble_SwapEvent;
-                bubble.CompareEvent += Bubble_CompareEvent;
+                bubble.Items.AddRange(values.Select(x=>x.Bar.Value));
+                bubble.SwapEvent += SwapEvent;
                 bubble.Sort();
             }
         }
 
-        private void Bubble_CompareEvent(object sender, Tuple<int, int> e)
+
+        private void SwapEvent(object sender, Tuple<int, int> e)
         {
-            // подсветить сравнивыемые элементы
-            throw new NotImplementedException();
+           
+            var tmpItem = values[e.Item1];
+            values[e.Item1] = values[e.Item2];
+            values[e.Item2] = tmpItem;
+
+            SwapItemsOnUI(e.Item1, e.Item2);
+
         }
 
-        private void Bubble_SwapEvent(object sender, Tuple<int, int> e)
+        private void SwapItemsOnUI(int firstPos, int secondPos)
         {
-            // обменять значениями прогрес бары, и лэйблы
-            throw new NotImplementedException();
+            var BarTmpLocation = values[firstPos].Bar.Location;
+            var BoxTmpLocation = values[firstPos].Box.Location;
+
+            values[firstPos].Bar.Location = values[secondPos].Bar.Location;
+            values[firstPos].Box.Location = values[secondPos].Box.Location;
+
+            values[secondPos].Bar.Location = BarTmpLocation;
+            values[secondPos].Box.Location = BoxTmpLocation;
+
+        }
+
+        private void InsertSortButtonClick(object sender, EventArgs e)
+        {
+            if (progressBarCount < 2) MessageBox.Show("нечего сортировать");
+            else
+            {
+                var insert = new InsertSort<int>();
+                insert.Items.AddRange(values.Select(x => x.Bar.Value));
+                insert.SwapEvent += SwapEvent;
+                insert.Sort();
+            }
+        }
+
+        private void CocktailSortButtonClick(object sender, EventArgs e)
+        {
+            if (progressBarCount < 2) MessageBox.Show("нечего сортировать");
+            else
+            {
+                var cocktail = new CocktailSort<int>();
+                cocktail.Items.AddRange(values.Select(x => x.Bar.Value));
+                cocktail.SwapEvent += SwapEvent;
+                cocktail.Sort();
+            }
+        }
+
+        private void ShellSortButtonClick(object sender, EventArgs e)
+        {
+            if (progressBarCount < 2) MessageBox.Show("нечего сортировать");
+            else
+            {
+                var shell = new ShellSort<int>();
+                shell.Items.AddRange(values.Select(x => x.Bar.Value));
+                shell.SwapEvent += SwapEvent;
+                shell.Sort();
+            }
         }
     }
 }
