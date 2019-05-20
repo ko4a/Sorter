@@ -5,6 +5,7 @@ using VerticalProgressBarSpace;
 using Sorter.Sort;
 using System.Linq;
 using System.Drawing;
+using System.Threading;
 
 namespace UIWinForms
 {
@@ -148,6 +149,10 @@ namespace UIWinForms
 
         private void SwapItemsOnUI(int firstPos, int secondPos)
         {
+            Color tmpColor = values[firstPos].Bar.Color;
+            values[firstPos].Bar.Color = Color.Red;
+            values[secondPos].Bar.Color = Color.Red;
+
             var BarTmpLocation = values[firstPos].Bar.Location;
             var BoxTmpLocation = values[firstPos].Box.Location;
 
@@ -156,6 +161,13 @@ namespace UIWinForms
 
             values[secondPos].Bar.Location = BarTmpLocation;
             values[secondPos].Box.Location = BoxTmpLocation;
+
+            ProgressBarPanel.Refresh();
+            Thread.Sleep(100);
+
+            values[firstPos].Bar.Color = tmpColor;
+            values[secondPos].Bar.Color = tmpColor;
+
 
         }
 
