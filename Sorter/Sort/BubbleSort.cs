@@ -13,12 +13,9 @@ namespace Sorter.Sort
 
             for (int i = 1; i < Items.Count; i++)
             {
-                var a = Items[i - 1];
-                var b = Items[i];
-                var tmpSwap = SwapCount;
-
                 
-                if (Compare(a,b) > 0)
+                
+                if (Compare(i-1,i) > 0)
                 {
                     Swap(i, i - 1);
                     SwapIteration = true;

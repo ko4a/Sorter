@@ -6,6 +6,7 @@ using Sorter.Sort;
 using System.Linq;
 using System.Drawing;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace UIWinForms
 {
@@ -13,7 +14,8 @@ namespace UIWinForms
     {
         private int progressBarCount = 0;
         private int previousBarLocationX = default;
-        private List<ItemSort> values = new List<ItemSort>(); 
+        private List<ItemSort> values = new List<ItemSort>();
+        private delegate void Invoker(int first, int second);
         public SorterForm()
         {
             InitializeComponent();
@@ -26,29 +28,29 @@ namespace UIWinForms
                 ++progressBarCount;
                 var progressBar = new VerticalProgressBar
                 {
-                   Height = ProgressBarPanel.Height,
-                   Location = new Point(previousBarLocationX,20),
-                   Width = 20,
-                   Value = addedValue
+                    Height = ProgressBarPanel.Height,
+                    Location = new Point(previousBarLocationX, 20),
+                    Width = 20,
+                    Value = addedValue
                 };
-               
 
-                
+
+
                 var textBox = new TextBox
                 {
                     ReadOnly = true,
                     Height = 15,
-                    Text = addedValue.ToString(), 
+                    Text = addedValue.ToString(),
                     Width = progressBar.Width,
-                    Location = new Point(previousBarLocationX,0)
+                    Location = new Point(previousBarLocationX, 0)
                 };
 
-                values.Add(new ItemSort(progressBar,textBox));
+                values.Add(new ItemSort(progressBar, textBox));
                 previousBarLocationX += progressBar.Width;
                 ProgressBarPanel.Controls.Add(progressBar);
-               
+
                 ProgressBarPanel.Controls.Add(textBox);
-                
+
             }
             else MessageBox.Show("Это не число.");
         }
@@ -58,7 +60,7 @@ namespace UIWinForms
             ProgressBarPanel.Controls.Clear();
 
             previousBarLocationX = default;
-            for (int i=0;i<progressBarCount;i++)
+            for (int i = 0; i < progressBarCount; i++)
             {
                 var progressBar = new VerticalProgressBar
                 {
@@ -129,29 +131,36 @@ namespace UIWinForms
             else
             {
                 var bubble = new BubbleSort<int>();
-                bubble.Items.AddRange(values.Select(x=>x.Bar.Value));
+                bubble.Items.AddRange(values.Select(x => x.Bar.Value));
                 bubble.SwapEvent += SwapEvent;
-                bubble.Sort();
+                var time = bubble.Sort();
+                ShowInfoAboutSort(bubble, time);
+
             }
         }
 
 
+
         private void SwapEvent(object sender, Tuple<int, int> e)
         {
-           
             var tmpItem = values[e.Item1];
             values[e.Item1] = values[e.Item2];
             values[e.Item2] = tmpItem;
 
             SwapItemsOnUI(e.Item1, e.Item2);
-
         }
+
+
+        
+
+        
 
         private void SwapItemsOnUI(int firstPos, int secondPos)
         {
+
+
             Color tmpColor = values[firstPos].Bar.Color;
-            values[firstPos].Bar.Color = Color.Red;
-            values[secondPos].Bar.Color = Color.Red;
+            SetColorItemsOnUI(firstPos, secondPos,Color.Red);
 
             var BarTmpLocation = values[firstPos].Bar.Location;
             var BoxTmpLocation = values[firstPos].Box.Location;
@@ -163,12 +172,22 @@ namespace UIWinForms
             values[secondPos].Box.Location = BoxTmpLocation;
 
             ProgressBarPanel.Refresh();
-            Thread.Sleep(100);
+            Thread.Sleep(10);
 
-            values[firstPos].Bar.Color = tmpColor;
-            values[secondPos].Bar.Color = tmpColor;
+            SetColorItemsOnUI(firstPos, secondPos, tmpColor);
+            ProgressBarPanel.Refresh();
+
+        }
 
 
+        /// <param name="firstPos"> позиция на которую будет ставится цвет </param>
+        /// <param name="secondPos">позиция на которую будет ставиться цвет </param>
+        /// <param name="color">цвет </param>
+
+        private void SetColorItemsOnUI(int firstPos, int secondPos, Color color)
+        {
+            values[firstPos].Bar.Color = color;
+            values[secondPos].Bar.Color = color;
         }
 
         private void InsertSortButtonClick(object sender, EventArgs e)
@@ -179,9 +198,18 @@ namespace UIWinForms
                 var insert = new InsertSort<int>();
                 insert.Items.AddRange(values.Select(x => x.Bar.Value));
                 insert.SwapEvent += SwapEvent;
-                insert.Sort();
+                var time =insert.Sort();
+                ShowInfoAboutSort(insert, time);
             }
         }
+
+        private void ShowInfoAboutSort(AlgorithmBase<int> algorithm, TimeSpan time )
+        {
+            MessageBox.Show($"Отсортировано за: {time.Milliseconds.ToString()} мс.\n" +
+                              $"Количество сравнений: {algorithm.CompareCount}\n"+
+                              $"Количество обменов:{algorithm.SwapCount}");
+        }
+
 
         private void CocktailSortButtonClick(object sender, EventArgs e)
         {
@@ -191,7 +219,8 @@ namespace UIWinForms
                 var cocktail = new CocktailSort<int>();
                 cocktail.Items.AddRange(values.Select(x => x.Bar.Value));
                 cocktail.SwapEvent += SwapEvent;
-                cocktail.Sort();
+                var time = cocktail.Sort();
+                ShowInfoAboutSort(cocktail, time);
             }
         }
 
@@ -203,8 +232,27 @@ namespace UIWinForms
                 var shell = new ShellSort<int>();
                 shell.Items.AddRange(values.Select(x => x.Bar.Value));
                 shell.SwapEvent += SwapEvent;
-                shell.Sort();
+                var time = shell.Sort();
+                ShowInfoAboutSort(shell, time);
             }
         }
+
+        private void QuickSortButtonClick(object sender, EventArgs e)
+        {
+
+            if (progressBarCount < 2) MessageBox.Show("нечего сортировать");
+            else
+            {
+                var quick = new QuickSort<int>();
+                quick.Items.AddRange(values.Select(x => x.Bar.Value));
+                quick.SwapEvent += SwapEvent;
+                var time = quick.Sort();
+                ShowInfoAboutSort(quick, time);
+            }
+
+
+        }
+
+
     }
 }

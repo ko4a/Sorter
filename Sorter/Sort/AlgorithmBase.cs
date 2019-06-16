@@ -7,8 +7,9 @@ namespace Sorter.Sort
    public class AlgorithmBase<T> where T:IComparable
     {
         public int SwapCount { get; set; } = default;
+        public int CompareCount { get; set; } = default;
 
-        public event EventHandler<Tuple<T,T>> CompareEvent;
+        public event EventHandler<Tuple<int,int>> CompareEvent;
         public event EventHandler<Tuple<int, int>> SwapEvent;
 
         public List<T> Items { get; set; } = new List<T>();
@@ -27,10 +28,11 @@ namespace Sorter.Sort
         }
 
 
-        public int Compare(T first, T second )
+        public int Compare(int firstIndex, int secondIndex )
         {
-            CompareEvent?.Invoke(this, new Tuple<T, T>(first,second));
-            return first.CompareTo(second);
+            CompareEvent?.Invoke(this, new Tuple<int, int>(firstIndex,secondIndex));
+            CompareCount++;
+            return Items[firstIndex].CompareTo(Items[secondIndex]);
         }
 
         public TimeSpan Sort()

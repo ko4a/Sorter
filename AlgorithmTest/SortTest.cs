@@ -94,5 +94,18 @@ namespace AlgorithmTest
 
         }
 
+        [TestMethod]
+        public void QuickSortTest()
+        {
+            var quick = new QuickSort<int>();
+            quick.Items.AddRange(items);
+
+            quick.Sort();
+
+            for (int i = 0; i < 10_000; i++)
+                Assert.AreEqual(sorted[i], quick.Items[i]);
+
+        }
+
     }
 }

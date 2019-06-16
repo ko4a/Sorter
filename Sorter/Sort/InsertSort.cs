@@ -11,7 +11,7 @@ namespace Sorter.Sort
         public override void Makesort()
         {
             for (int i = 1; i < Items.Count; i++)
-                for (int j = i; j > 0 && Compare(Items[j-1],Items[j])>0; j-- ) 
+                for (int j = i; j > 0 && Compare(j-1,j)>0; j-- ) 
                     Swap(j - 1, j);
         }
     }
